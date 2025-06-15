@@ -1,0 +1,19 @@
+{
+	"name": "r_d_hw_nodejs",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"lint": "eslint src",
+		"lint:fix": "eslint src --fix"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"packageManager": "pnpm@10.12.1",
+	"devDependencies": {
+		"@eslint/js": "^9.29.0",
+		"eslint": "^9.29.0",
+		"globals": "^16.2.0"
+	}
+}
