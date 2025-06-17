@@ -1,11 +1,14 @@
 # Starting the project
 
+!!! IMPORTANT
+Please use Node.js >= v24.0.2
+
 1. Navigate from root dircetiry to the folder `hw_01` via a terminal, like so `cd src/hw_01`
-2. Run command `node --disable-warning=ExperimentalWarning index.ts`
+2. Run command `node --disable-warning=ExperimentalWarning index.ts <command> <flag> <flag value>`
 
 ----------------------- or -------------------------
 
-3. Run command `pnpm run start`
+3. Run command `pnpm run start <command> <flag> <flag value>`
 
 
 # Description
