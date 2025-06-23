@@ -1,0 +1,15 @@
+{
+	"name": "r_d_hw_nodejs",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"type": "module",
+	"scripts": {
+		"start": "node --disable-warning=ExperimentalWarning index.ts",
+		"test": "node --disable-warning=ExperimentalWarning --env-file=.env tests.ts"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"packageManager": "pnpm@10.12.1"
+}
