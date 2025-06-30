@@ -20,6 +20,7 @@ export default defineConfig([
 		rules: {
 			'no-unused-vars': 'warn',
 			'no-undef': 'warn',
+			'@typescript-eslint/no-namespace': 'off',
 		},
 	},
 ]);

@@ -1,0 +1,40 @@
+{
+	"name": "hw_04",
+	"version": "1.0.0",
+	"type": "module",
+	"scripts": {
+		"build": "node build.mjs",
+		"start": "node dist/server.mjs",
+		"compile": "tsc && node src/server.js"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"packageManager": "pnpm@10.12.1",
+	"dependencies": {
+		"@asteasolutions/zod-to-openapi": "^7.3.4",
+		"awilix": "^12.0.5",
+		"awilix-express": "^9.0.2",
+		"compression": "^1.8.0",
+		"cors": "^2.8.5",
+		"dotenv": "^16.5.0",
+		"express": "^5.1.0",
+		"express-rate-limit": "^7.5.1",
+		"helmet": "^8.1.0",
+		"morgan": "^1.10.0",
+		"pino": "^9.7.0",
+		"pino-http": "^10.5.0",
+		"swagger-jsdoc": "^6.2.8",
+		"swagger-ui-express": "^5.0.1",
+		"zod": "^3.25.67"
+	},
+	"devDependencies": {
+		"@types/compression": "^1.8.1",
+		"@types/cors": "^2.8.19",
+		"@types/express": "^5.0.3",
+		"@types/morgan": "^1.9.10",
+		"@types/swagger-jsdoc": "^6.0.4",
+		"esbuild": "^0.25.5",
+		"esbuild-plugin-tsc": "^0.5.0"
+	}
+}
