@@ -11,6 +11,6 @@ RUN pnpm install
 COPY src ./src
 EXPOSE 3000
 ENV APP_ROOT=/usr
-ENV host=0.0.0.0
+ENV HOST=0.0.0.0
 
 CMD ["node", "src/server.ts"]
