@@ -1,0 +1,31 @@
+# Folders
+node_modules
+dist
+.git
+coverage
+test/
+tests/
+
+# Logs
+*.log
+npm-debug.log
+pnpm-debug.log
+
+# Docs & Metadata
+*.md
+README*
+
+# Files
+**/*.spec.ts
+**/*.test.ts
+eslint.config.json
+README.md
+
+# Docker-related
+Dockerfile
+.dockerignore
+
+# Misc
+.vscode
+.env
+.prettier
