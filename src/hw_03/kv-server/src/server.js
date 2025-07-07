@@ -9,7 +9,6 @@ const reddisLikeUrl = process.env.REDIS_URL;
 app.use(express.json());
 app.get('/kv/:key', async (req, res) => {
 	const { key } = req.params;
-	console.log('key -->', key);
 	const response = await fetch(`${reddisLikeUrl}/get?key=${key}`, {
 		method: 'GET',
 		headers: {

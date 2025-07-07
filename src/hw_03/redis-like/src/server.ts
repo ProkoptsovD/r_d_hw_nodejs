@@ -16,8 +16,6 @@ const server = http.createServer((req, res) => {
 		'GET /get': () => {
 			const cached = cache.get(path) ?? null;
 
-			console.log('cached -->', cached);
-
 			return res.end(JSON.stringify({ value: cached }));
 		},
 		'POST /set': async (request) => {
