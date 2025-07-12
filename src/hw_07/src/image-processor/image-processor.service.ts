@@ -1,10 +1,9 @@
 import * as path from 'node:path';
-import * as crypto from 'node:crypto';
 import * as fsp from 'node:fs/promises';
 import * as os from 'node:os';
 import { Mutex, Semaphore } from 'async-mutex';
 
-import { Inject, Injectable } from '@nestjs/common';
+import { Inject, Injectable, Logger } from '@nestjs/common';
 import {
   ThumbnailResult,
   ThumbnailResultError,
@@ -35,6 +34,7 @@ export interface ProcessingStats {
 export class ImageProcessorService {
   private readonly mutex = new Mutex();
   private readonly defaultThreads = 4;
+  private readonly logger = new Logger(ImageProcessorService.name);
 
   constructor(
     @Inject('CompressService')
@@ -43,10 +43,13 @@ export class ImageProcessorService {
   ) {}
 
   async upload(file: Express.Multer.File): Promise<ProcessingStats> {
-    const requestId = crypto.randomUUID();
-    const tempDir = path.resolve(__dirname, './temp');
-    const unpackedDir = path.resolve(__dirname, `./temp/${requestId}`);
+    const baseDir = path.dirname(file.path);
+    const requestId = path.basename(baseDir);
     const resultDir = path.resolve(__dirname, `./thumbnails/${requestId}`);
+    const unpackedDir = path.join(baseDir, 'unpacked');
+
+    this.logger.verbose(`Handling request with ID ${requestId}`);
+
     const threads = os.availableParallelism() || this.defaultThreads;
     const semaphore = new Semaphore(threads);
 
@@ -57,7 +60,9 @@ export class ImageProcessorService {
       durationMs: 0,
     };
 
+    await fsp.mkdir(unpackedDir, { recursive: true });
     await this.compressService.unzip(file.path, unpackedDir);
+
     const files = await fsp.readdir(unpackedDir);
 
     const start = performance.now();
@@ -94,7 +99,8 @@ export class ImageProcessorService {
     const end = performance.now() - start;
     stats.durationMs = end;
 
-    await fsp.rm(tempDir, { recursive: true, force: true });
+    // Clean up temp folder after processing
+    await fsp.rm(baseDir, { recursive: true, force: true });
 
     return stats;
   }

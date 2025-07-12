@@ -1,6 +1,6 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { Worker } from 'node:worker_threads';
-import { faker } from '@faker-js/faker'; // Kyrylo, don't blame me for this ;) this is for fan. In real world I would never do such a thing
+import { faker } from '@faker-js/faker'; // Kyrylo, don't blame me for this ;) this is for fan. In the real world I would never do such a thing
 import { isString } from '../helpers';
 
 @Injectable()

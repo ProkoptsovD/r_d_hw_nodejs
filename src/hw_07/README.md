@@ -37,3 +37,12 @@ pnpm start
 ```bash
 curl -F "zip=@imgs.zip;type=application/zip" http://localhost:3000/zip
 ```
+
+Для симуляції декальох одночасних запитів скористайтеся цією командою. Скопіюйте і ставте в термінал
+```bash
+( curl -s -F "zip=@imgs.zip;type=application/zip" http://localhost:3000/zip && echo -e "\n" ) &
+( curl -s -F "zip=@imgs.zip;type=application/zip" http://localhost:3000/zip && echo -e "\n" ) &
+( curl -s -F "zip=@imgs.zip;type=application/zip" http://localhost:3000/zip && echo -e "\n" ) &
+wait
+```
+

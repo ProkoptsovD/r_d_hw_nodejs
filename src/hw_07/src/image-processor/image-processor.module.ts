@@ -7,28 +7,27 @@ import { FileCompressService } from 'src/shared/services';
 import * as path from 'node:path';
 import * as fs from 'node:fs';
 import { ThumbnailService } from 'src/shared/services/thumbnail';
+import { randomUUID } from 'node:crypto';
 
 @Module({
   imports: [
     MulterModule.registerAsync({
       useFactory: () => {
-        const uploadDir = path.resolve(__dirname, './temp');
-
-        if (!fs.existsSync(uploadDir)) {
-          fs.mkdirSync(uploadDir, { recursive: true });
-        }
+        const baseDir = path.resolve(__dirname, './temp');
 
         return {
           storage: multer.diskStorage({
             destination: (_, __, cb) => {
-              const uploadDir = path.resolve(__dirname, './temp');
-              if (!fs.existsSync(uploadDir)) {
-                fs.mkdirSync(uploadDir, { recursive: true });
-              }
-              cb(null, uploadDir);
+              const uniqueDir = path.join(
+                baseDir,
+                `${Date.now()}-${randomUUID()}`,
+              );
+              fs.mkdirSync(uniqueDir, { recursive: true });
+              cb(null, uniqueDir);
             },
             filename: (_, file, cb) => {
-              cb(null, file.originalname);
+              const uniqueName = `${Date.now()}-${randomUUID()}${path.extname(file.originalname)}`;
+              cb(null, uniqueName);
             },
           }),
         };

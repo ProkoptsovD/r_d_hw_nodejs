@@ -18,7 +18,6 @@ export class FileTypeValidationPipe implements PipeTransform {
     if (!isMulterFile(value)) {
       throw new UnprocessableEntityException('This is not a file');
     }
-    console.log('value.mimetype -->', value.mimetype);
 
     if (!this.accepts.includes(value.mimetype)) {
       throw new BadRequestException(
