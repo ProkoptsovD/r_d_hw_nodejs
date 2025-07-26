@@ -1,3 +1,5 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type Anything = any;
 type AnyFunction<T = Anything> = (...args: Anything[]) => T;
